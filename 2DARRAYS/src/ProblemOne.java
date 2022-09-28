@@ -1,46 +1,48 @@
 import java.lang.Math;
-import java.util.Arrays;
 public class ProblemOne {
     public static void main(String[] args) {
         int[][] x = {
         {-22, 12, -33},
         {33, 62, 21},
-        {54, 22, 42}
+        {54, 487, 42}
     };
     FindMinimum(x);
     }
 
     public static void FindMinimum(int[][] x) {
-        int[] differences = new int[x.length];
-        String[] indexes = new String[x.length];
+        int index = 0;
+        int Answer = 0;
+        int Difference;
+        int zed = 0;
+        int uno = 0;
+        int dos = 0;
+        int tres = 0;
+        int cuatro = 0;
+        for (int a= 0;a < x.length; a++)
+        {
+            for (int b = 1; b < x.length; b++) {
+                index+=b;
+                for (int j = 0; j< x.length; j++) {
+                    Difference = (x[a][index]-x[a][j]);
+                    if (Difference < Answer) {
+                        Answer = Math.abs(Difference);
+                        uno = a;
+                        dos = j;
+                        tres = a;
+                        cuatro = index+1;
+                    }
 
-        for (int i = 0; i < differences.length; i++) {
-            int j; int k; int l;
-            j = x[i][1];
-            k = Math.abs( j - x[i][0]);
-            l = Math.abs( j - x[i][2]);
-
-            if( k <= l){
-                differences[i] = k;
-                indexes[i] = (i + "," + 1 + " and " + i + "," + 0);
+                }
+                if (Answer > 0) {
+                    zed = Answer;
+                }
+                index = 0;
+                
             }
-            else{
-                differences[i] = l;
-                indexes[i] = (i + "," + 1 + " and " + i + "," + 2);
-            }
-
         }
-
-        int min = differences[0];
-        String minindexes = indexes[0];  
-        for (int i = 0; i < differences.length; i++) {  
-           if(differences[i] <min)  
-               min = differences[i];
-               minindexes = indexes[i];
-        }  
-      int Smallest = min;    
-
-        System.out.println("The Smallest Difference is " + Smallest + " and the indexes are " + minindexes);
+        System.out.println(zed);
+        System.out.println("[" + uno + ", " + dos+ "]");
+        System.out.println("[" + tres + ", " + cuatro + "]");
     }
     
 }
